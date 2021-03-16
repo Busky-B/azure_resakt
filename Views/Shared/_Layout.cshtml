@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SeaSharp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="http://193.10.202.77/css/HotelSeasharp.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <img class="kund" src="http://193.10.202.77/images/kund.jpg" />
+    <p style="text-align: right">Kundservice</p>
+    @* HÄR INSERTAS BAKGRUNDSIMAGE *@
+
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background: rgba(255,127,80,0.6);
+            width: 100%;">
+            <h1 class="rubrik1">Hotell SeaSharp</h1>
+
+            <div class="container">
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hotell SeaSharp</a>*@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://193.10.202.78/GuestWebSite">HEM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://193.10.202.77/KonferensrumSida">KONFERENSER</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://193.10.202.78/GuestWebSite">GÄST</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://193.10.202.81/Seasharp">BOKA RUM</a>
+                        </li>
+
+                        <style>
+                            .dropdown {
+                                position: relative;
+                                display: inline-block;
+                            }
+
+                            .dropdown-content {
+                                display: none;
+                                position: absolute;
+                                background-color: #f9f9f9;
+                                min-width: 160px;
+                                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                                padding: 12px 16px;
+                                z-index: 1;
+                            }
+
+                            .dropdown:hover .dropdown-content {
+                                display: block;
+                            }
+                        </style>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link text-dark" style="font-weight:bold" asp-area="" asp-controller="Home" asp-action="Index">RESTAURANG & AKTIVITETER</a>
+
+                            @*<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">testAktiviteter</a>*@
+                            <div class="nav-link text-dark dropdown-content">
+                                <p class="dropdown-item">Restaurang</p>
+                                <a class="dropdown-item" asp-area="" asp-controller="Guest" asp-action="RestaurantInfo">Öppettider</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="RestaurantInfo" asp-action="FullMenu">Meny</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Reservations" asp-action="Create">Reservera bord</a>
+                                <div class="dropdown-divider"></div>
+                                <p class="dropdown-item">Aktiviteter</p>
+                                <a class="dropdown-item" asp-area="" asp-controller="Guest" asp-action="GetActivities">Visa Aktiviteter</a>
+                                @*<a class="dropdown-item" asp-area="" asp-controller="Guest" asp-action="#">Mina Bokningar</a>*@
+                                <div class="dropdown-divider"></div>
+                                @*<a class="dropdown-item" asp-controller="Admin" asp-action="Index">Logga in som Admin</a>*@
+                            </div>
+                        </li>
+
+                        @*@ @Html.ActionLink("Visa aktiviteter", "GetActivities") @* Skall visa de aktiviteter som finns tillgängliga att boka in sig på
+        @Html.ActionLink("Restaurangen", "RestaurantInfo")  Skall ta fram kort information om restaurangen och kanske snabblänk till att boka ett bord
+        @Html.ActionLink("Mina Bokningar", null)  Skall visa vy för alla bokningar som finns under gästen, både aktiviteter och bokade bord i restaurang.
+        @Html.ActionLink("Reservera bord i restaurangen", "GetReservations")*@
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" style="font-weight:bold" asp-area="" asp-controller="Admin" asp-action="Index">Logga in</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" style="font-weight:bold" asp-area="" asp-controller="Admin" asp-action="SignOut">Logga ut</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            @RenderBody()
+
+
+            @*<div style="background-image: url('http://193.10.202.77/images/hotelbilden.jpg');">
+                    @RenderBody()
+                </div>*@
+        </main>
+    </div>
+    @*<img class="bild" src="http://193.10.202.77/images/hotelbilden.jpg" width="1400" height="900" align="middle" margin-left="auto" margin-right="auto" />*@
+    <footer class="border-top footer text-muted" style="position:fixed; left:0;bottom:0;">
+        <div class="container">
+            &copy; 2021 - Hotell SeaSharp - <a asp-area="" asp-controller="Home" asp-action="Index">Till första sidan</a>
+        </div>
+    </footer>
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

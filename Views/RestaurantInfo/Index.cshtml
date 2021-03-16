@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ResAktWebb.Models.RestaurantInfo>
+
+@{
+    ViewData["Title"] = "RestaurantInfo";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Restauranginformation</h1>
+
+    <p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Create">Skapa ny Restauranginformation</a>
+        }
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Name)*@Namn
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Open)*@Öppet
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Closed)*@Stängt
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Open)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Closed)
+                    </td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a>
+                            <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

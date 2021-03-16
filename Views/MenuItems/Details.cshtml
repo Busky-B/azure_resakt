@@ -1,0 +1,53 @@
+﻿@model ResAktWebb.Models.MenuItems
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Detaljer</h1>
+
+    <div>
+        <h4>Menyalternativ</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Name)*@Namn
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Description)*@Beskrivning
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Allergies)*@Allergier
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Allergies)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Price)*@Pris
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.MenuCategory)*@Menykategori
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MenuCategory.Name)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Redigera</a> |
+        <a asp-controller="Menus" asp-action="Index">Tillbaka till lista</a>
+        @*<a asp-action="Index" asp-route-id="@Model.MenuCategoryId">Back to List</a>*@
+    </div>
+</div>

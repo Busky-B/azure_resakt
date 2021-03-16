@@ -1,0 +1,36 @@
+﻿@model List<ResAktWebb.Models.Menu>
+
+@{
+    ViewData["Title"] = "FullMenu";
+
+}
+
+
+
+<div class="my-div">
+    <h1>Meny - Restaurang SeaSharp</h1>
+
+
+    @foreach (var m in Model)
+    {
+        <h3>@Html.DisplayFor(x => m.Name)</h3>
+        @foreach (var mC in m.MenuCategory)
+        {
+            <h5>@Html.DisplayFor(x => mC.Name)</h5>
+            @foreach (var mI in mC.MenuItems)
+            {
+                <p style="font-weight:bold;" class="">@Html.DisplayFor(x => mI.Name)</p>
+                <p>
+                    @Html.DisplayFor(x => mI.Description)
+                </p>
+                <p>
+                    @Html.DisplayFor(x => mI.Allergies)
+                </p>
+            }
+        }
+
+
+
+        <hr />
+    }
+</div>

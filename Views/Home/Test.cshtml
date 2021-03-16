@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ResAktWebb.Models.Activity>
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Activities</h1>
+
+<table class="table">
+    <thead></thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Ändra</a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Radera</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

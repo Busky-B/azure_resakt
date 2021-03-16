@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "My Page";
+}
+@{
+}
+
+
+<h1>Välkommen ***Gäst(byt till användarens namn)</h1>
+
+@Html.ActionLink("Visa aktiviteter", "GetActivities") @* Skall visa de aktiviteter som finns tillgängliga att boka in sig på *@
+@Html.ActionLink("Restaurangen", "RestaurantInfo") @* Skall ta fram kort information om restaurangen och kanske snabblänk till att boka ett bord *@
+@Html.ActionLink("Mina Bokningar", null) @* Skall visa vy för alla bokningar som finns under gästen, både aktiviteter och bokade bord i restaurang. *@
+@Html.ActionLink("Reservera bord i restaurangen", "GetReservations")

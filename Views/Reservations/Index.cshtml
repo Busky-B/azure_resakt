@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ResAktWebb.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Reservationer</h1>
+
+    <p>
+        <a asp-action="Create">Skapa ny reservation</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.StartTime)*@Starttid
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.EndTime)*@Sluttid
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.CustomerName)*@Kundnamn
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.NumParticipants)*@Antal deltagande
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.TableNum)*@Bordsnummer
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumParticipants)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TableNum)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

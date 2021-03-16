@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ResAktWebb.Models.ActivityBooking>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout_Admin";
+
+}
+
+<div class="my-div">
+
+    <h1>Aktiviteter</h1>
+
+    <p>
+            @* Använder klasserna btn och btn-primary för att göra länkarna till snygga knappar istället *@
+            <a asp-action="Create" class="btn btn-primary" style="text-decoration:none; color:white;">Skapa Ny</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName) 
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumParticipants)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Activity) 
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumParticipants)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivityId)
+                    </td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Redigera | </a>
+                            <a asp-action="Details" asp-route-id="@item.Id">Detaljer | </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

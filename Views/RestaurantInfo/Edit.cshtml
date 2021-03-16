@@ -1,0 +1,48 @@
+﻿@model ResAktWebb.Models.RestaurantInfo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Redigera</h1>
+
+    <h4>Restauranginformation</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Namn</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Open" class="control-label">Öppet</label>
+                    <input asp-for="Open" class="form-control" />
+                    <span asp-validation-for="Open" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Closed" class="control-label">Stängt</label>
+                    <input asp-for="Closed" class="form-control" />
+                    <span asp-validation-for="Closed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="OK" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Tillbaka till lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

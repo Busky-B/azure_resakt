@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ResAktWebb.Models.Activity>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout_Admin";
+}
+
+<div class="my-div">
+
+    <h1>Aktiviteter</h1>
+
+    <p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Create" class="btn btn-primary">Skapa ny aktivitet</a>
+        }
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Description)*@ Beskrivning
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Location)*@ Plats
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Price)*@ Pris
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.StartTime)*@ Börjar
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.EndTime)*@ Slutar
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a>
+                            <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

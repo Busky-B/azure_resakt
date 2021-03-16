@@ -1,0 +1,43 @@
+﻿@model ResAktWebb.Models.RestaurantInfo
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Ta bort</h1>
+
+    <h3>Är du säker på att du vill ta bort detta?</h3>
+    <div>
+        <h4>Restauranginformation</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Name)*@Namn
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Open)*@Öppet
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Open)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Closed)*@Stängt
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Closed)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+            <a asp-action="Index">Tillbaka till lista</a>
+        </form>
+    </div>
+</div>

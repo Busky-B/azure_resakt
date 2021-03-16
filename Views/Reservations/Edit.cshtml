@@ -1,0 +1,58 @@
+﻿@model ResAktWebb.Models.Reservation
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Redigera</h1>
+
+    <h4>Reservation</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="StartTime" class="control-label">Starttid</label>
+                    <input asp-for="StartTime" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndTime" class="control-label">Sluttid</label>
+                    <input asp-for="EndTime" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label">Kundnamn</label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumParticipants" class="control-label">Antal deltagande</label>
+                    <input asp-for="NumParticipants" class="form-control" />
+                    <span asp-validation-for="NumParticipants" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TableNum" class="control-label">Bordsnummer</label>
+                    <input asp-for="TableNum" class="form-control" />
+                    <span asp-validation-for="TableNum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="OK" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Tillbaka till lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

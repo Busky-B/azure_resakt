@@ -1,0 +1,47 @@
+﻿@model ResAktWebb.Models.ActivityBooking
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout_Admin";
+}
+<div class="my-div">
+
+    <h1>Redigera</h1>
+
+    <h4>Aktivitetsbokning</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label">Kundnamn</label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumParticipants" class="control-label">Antal deltagare</label>
+                    <input asp-for="NumParticipants" class="form-control" />
+                    <span asp-validation-for="NumParticipants" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActivityId" class="control-label">Aktivitet</label>
+                    <select asp-for="ActivityId" class="form-control" asp-items="ViewBag.ActivityId"></select>
+                    <span asp-validation-for="ActivityId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Tillbaka till lista</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

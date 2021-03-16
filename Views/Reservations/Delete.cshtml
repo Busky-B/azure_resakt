@@ -1,0 +1,55 @@
+﻿@model ResAktWebb.Models.Reservation
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>Ta bort</h1>
+
+    <h3>Är du säker på att du vill ta bort detta?</h3>
+    <div>
+        <h4>Reservation</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.StartTime)*@Starttid
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.EndTime)*@Sluttid
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.CustomerName)*@Kundnamn
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CustomerName)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.NumParticipants)*@Antal deltagande
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumParticipants)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.TableNum)*@Bordsnummer
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TableNum)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+            <a asp-action="Index">Tillbaka till lista</a>
+        </form>
+    </div>
+</div>

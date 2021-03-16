@@ -1,0 +1,168 @@
+﻿@model List<ResAktWebb.Models.Activity>
+
+@{
+    ViewData["Title"] = "Activities";
+}
+
+
+@*<div class="fluid container-addition">*@<div class="my-div">
+    <table class="table">
+
+        <tr>
+            <th>Beskrivning</th>
+            <th>Plats</th>
+            <th>Pris</th>
+            <th colspan="2">Starttid</th>
+        </tr>
+
+        @foreach (var i in Model)
+        {
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => i.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => i.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => i.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => i.StartTime)
+                </td>
+                <td>
+                    <button onclick="clickedBookingButton(@Html.DisplayFor(x => i.Id))" id="@Html.DisplayFor(x => i.Id)" class="get_act btn btn-primary">Boka</button>
+                </td>
+                @*<td> @Html.ActionLink("Boka", "Create", "ActivityBookings")</td>*@
+            </tr>
+
+        }
+    </table>
+
+
+
+
+    <script>
+        // on document ready-jquery
+        $(function () {
+            $("#pop-form-number").change(() => {
+
+
+                const n = $("#pop-form-number").val();
+                console.log("formnumber was changed to : " + n);
+
+                if (n < 0) {
+                    console.log("n is less than 0 !!!!!!");
+                    alert("Cant choose a negative number")
+                    $("#pop-form-number").val(0);
+                }
+
+
+            });
+        });
+
+        function clickedBookingButton(id) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetClickedActivity")',
+                data: { id: id },
+                success: function (data) {
+                    // for reset
+                    var id = 0;
+                    var nameOfParticipant = "";
+                    var numOfParticipants = 0;
+                    var actId = data.id;
+
+                    // for debug
+                    console.log('<-- Ajax . Success -->');
+                    console.log(data);
+                    console.log(("Testing data.desc \n " + data.description));
+
+
+                    // show get-result within popup
+                    $("#pop-desc").html(data.description);
+                    $("#pop").toggleClass("toggle-pop");
+
+                    //sät aId på hidden variable
+                    $("#pop-form-aId").val(actId);
+                    console.log("pop-form-aId set to: " + $("#pop-form-aId").val())
+                }
+            });
+        }
+        function ExitButton() {
+            // Removes the popup
+
+            $(function () {
+                console.log("exitbutton was pressed ______")
+                $("#pop").toggleClass("toggle-pop");
+                $("#pop-form-name").val("");
+                $("#pop-form-num").val(-1);
+            });
+        }
+
+        function handleBookingForm() {
+
+            // alert("TestData: " + $("#pop-form-number").val());
+
+            $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("CreateActivityBooking")',
+                    data: {
+                        name: $("#pop-form-name").val(),
+                        num: $("#pop-form-number").val(),
+                        aId: $("#pop-form-aId").val()
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        console.log("ActivityBooking created!")
+                        alert("Din bokning är skapad")
+                        ExitButton();
+                    }
+
+                });
+
+        }
+    </script>
+
+
+
+
+</div>
+
+<div class="pop-fixed-box" id="csstest">
+    <div class="pop-box toggle-pop" id="pop">
+        <button id="exit" style="float:right" onclick="ExitButton()">X</button>
+        <h3 style="color:red;">Form som skall fyllas</h3>
+        <p id="pop-desc"></p>
+        <form method="post">
+            <div class="center-div">
+               <dl class="row">
+                   <dt class="col-sm-4">
+                        <label for="name">Namn: </label> <br />
+                   </dt>
+                   <dd class="col-sm-10">
+                        <input type="text" name="name" id="pop-form-name" /> <br />
+                   </dd>
+
+                </dl>
+            </div>
+            <div class="center-div">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        <label for="num">Antal:</label> <br />
+                    </dt>
+                    <dd class="col-sm-10">
+                        <input type="number" name="num" id="pop-form-number" /> <br />
+                    </dd>
+                </dl>
+                        @* Gömd input som sparar aktivitetens id *@
+                        <input type="hidden" id="pop-form-aId" />
+            </div>
+            <div class="center-div">
+                <input type="button" class="btn btn-primary" value="Skapa Bokning" id="createActivityBooking" onclick="handleBookingForm()" />
+            </div>
+        </form>
+    </div>
+</div>

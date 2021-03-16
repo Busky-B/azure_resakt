@@ -1,0 +1,39 @@
+﻿@model ResAktWebb.Models.ActivityBooking
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout_Admin";
+}
+<div class="my-div">
+
+    <h1>Detaljer</h1>
+
+    <div>
+        <h4>Aktivitetsbokning</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.CustomerName)*@ Kundnamn
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CustomerName)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.NumParticipants)*@ Antal deltagare
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumParticipants)
+            </dd>
+            <dt class="col-sm-2">
+                @*@Html.DisplayNameFor(model => model.Activity)*@
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Activity.Id)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Redigera*</a> |
+        <a asp-action="Index">Tillbaka till lista</a>
+    </div>
+</div>

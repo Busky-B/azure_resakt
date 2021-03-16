@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ResAktWebb.Models.Reservation>
+
+@{
+    ViewData["Title"] = "GetReservations";
+}
+<div class="my-div">
+
+    <h1>Dina restaurangbordssreserveringar</h1>
+
+    <p>
+        @Html.ActionLink("Reservera ett bord", "Create", "Reservations")
+    </p>
+    @*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumParticipants)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TableNum)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>*@
+    @*@foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumParticipants)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TableNum)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+    }*@
+        @*</tbody>
+    </table>
+    <h4>Här ska gästens restaurangbokningar visas</h4>*@
+
+</div>

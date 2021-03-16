@@ -1,0 +1,177 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+/* TOBBE CSS */
+.my-div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+}
+.center-div {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin: 10px;
+
+}
+table {
+    border-radius:25px;
+}
+body {
+    background-image: url("http://193.10.202.77/images/hotelbilden.jpg");
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    position: relative;
+    background-color: #000;
+}
+
+
+.container-addition {
+    color:red;
+    border-radius: 15px;
+}
+.test
+{
+  color: red;
+  text-decoration: none;
+}
+
+.pop-fixed-box {
+
+    position:fixed;
+    left:35%;
+    top:30%;
+    width:auto;
+    max-width:70%;
+    min-width: 30%;
+    margin: auto;
+    background: rgba(255,127,80,0.8);
+    backdrop-filter: blur(3px);
+
+    border-radius: 15px;
+}
+
+.pop-box {
+    position: relative;
+
+    padding: 10px;
+    transition: width 1s, height 1s, transform 1s;
+
+    /*border: 1px groove grey;
+    */
+}
+
+
+.testing {
+    color: red;
+}
+
+
+.toggle-pop {
+    display: none;
+    border: none;
+    border:none;
+}
+
+/****************************/
+.my-popup-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.my-popup .my-popup-text {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+.show {
+  display:none;
+}
+
+.testing {
+    color: aqua;
+}
+
+
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

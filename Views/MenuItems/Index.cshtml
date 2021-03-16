@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ResAktWebb.Models.MenuItems>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<div class="my-div">
+    <h1>@ViewBag.MenuCategory</h1>
+
+    <p>
+        <a asp-action="Create" asp-route-id="@ViewBag.route">Skapa ny maträtt/dryck</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Name)*@Namn
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Description)*@Beskrivning
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Allergies)*@Allergier
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Price)*@Pris
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Allergies)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Redigera</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Ta bort</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
