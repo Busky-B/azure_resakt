@@ -52,7 +52,7 @@ namespace ResAktWebb.Controllers
 			using (HttpClient client = new HttpClient()) 
 			{
 
-            var aResponse = await client.GetAsync("http://informatik12.ei.hv.se/grupp5/api/Activities");
+            var aResponse = await client.GetAsync("http://informatik12.ei.hv.se/grupp5v2/api/Activities");
             string aJsonResponse = await aResponse.Content.ReadAsStringAsync();
             a = JsonConvert.DeserializeObject<List<Activity>>(aJsonResponse);
             ViewData["ActivityId"] = new SelectList(a, "Id", "Description");
