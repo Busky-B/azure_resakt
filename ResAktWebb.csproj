@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="RestHelperLib">
+    <Reference Include="RestHelperLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>ClassLib\RestHelperLib.dll</HintPath>
     </Reference>
   </ItemGroup>
