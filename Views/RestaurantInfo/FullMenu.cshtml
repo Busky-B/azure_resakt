@@ -8,24 +8,26 @@
 
 
 <div class="my-div">
-    <h1>Meny - Restaurang SeaSharp</h1>
+    <div class="menu-div">Restaurang SeaSharp</div>
 
 
     @foreach (var m in Model)
     {
-        <h3>@Html.DisplayFor(x => m.Name)</h3>
+        <div class="menu-maincategory">@Html.DisplayFor(x => m.Name)</div>
         @foreach (var mC in m.MenuCategory)
         {
-            <h5>@Html.DisplayFor(x => mC.Name)</h5>
+            <div class="menu-subcategory">@Html.DisplayFor(x => mC.Name)</div>
             @foreach (var mI in mC.MenuItems)
             {
-                <p style="font-weight:bold;" class="">@Html.DisplayFor(x => mI.Name)</p>
-                <p>
-                    @Html.DisplayFor(x => mI.Description)
-                </p>
-                <p>
-                    @Html.DisplayFor(x => mI.Allergies)
-                </p>
+                <div class="menu-item">
+                    <div>@Html.DisplayFor(x => mI.Name)</div>
+                    <div>
+                        @Html.DisplayFor(x => mI.Description)
+                    </div>
+                    <div class="menu-allergy">
+                        (Allergier: @Html.DisplayFor(x => mI.Allergies))
+                    </div>
+                </div>
             }
         }
 
