@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using RestHelperLib;
 
 namespace ResAktWebb.Controllers
 {

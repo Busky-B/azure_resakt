@@ -12,6 +12,7 @@ using ResAktWebb.Data;
 using ResAktWebb.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
+using RestHelperLib;
 
 namespace ResAktWebb.Controllers
 {
@@ -23,7 +24,7 @@ namespace ResAktWebb.Controllers
         string menuApi = "menus/";
         string menuCatApi = "menuCategories/";
         string menuItemApi = "menuItems/";
-        string api = "http://informatik12.ei.hv.se/grupp5/api/Menus/";
+        
 
         public MenusController(ResAktWebbContext context)
         {
@@ -33,6 +34,7 @@ namespace ResAktWebb.Controllers
         // GET: Menus
         public async Task<IActionResult> Index()
         {
+            //Visa hela hierarkin på menyn på samma sida för admin.
             var menus = await RestHelper.ApiGet<Menu>(menuApi);
             var menuCategories = await RestHelper.ApiGet<MenuCategory>(menuCatApi);
             var menuItems = await RestHelper.ApiGet<MenuItems>(menuItemApi);

@@ -11,13 +11,13 @@ using Newtonsoft.Json;
 using ResAktWebb.Data;
 using ResAktWebb.Models;
 using Microsoft.AspNetCore.Authorization;
+using RestHelperLib;
 
 namespace ResAktWebb.Controllers
 {
     public class MenuCategoriesController : Controller
     {
         private readonly ResAktWebbContext _context;
-        static readonly HttpClient client = new HttpClient();
         string menuCatApi = "menuCategories/";
         string menuApi = "menus/";
         public MenuCategoriesController(ResAktWebbContext context)
@@ -28,12 +28,16 @@ namespace ResAktWebb.Controllers
         // GET: MenuCategories
         public async Task<IActionResult> Index(int? id)
         {
+            //Om man väljer att gå till sidan utan ett menyID så går det inte
+            if (id!=null)
+            {
             var menuCategories = await RestHelper.ApiGet<MenuCategory>(menuCatApi);
             var menu = await RestHelper.ApiGet<Menu>(menuApi, id);
             List<MenuCategory> categoriesForMenuId = new List<MenuCategory>();
             ViewData["Menu"] = menu.Name;
             ViewData["route"] = id;
             ViewData["MenuId"] = menu.Id;
+                //För att kunna visa underkategorins tillhörande huvudkategori
             foreach (var item in menuCategories)
             {
                 if (item.MenuId == id)
@@ -41,14 +45,14 @@ namespace ResAktWebb.Controllers
                     categoriesForMenuId.Add(item);
                 }
             }
-            foreach (var item in categoriesForMenuId)
-            {
-                System.Diagnostics.Debug.WriteLine(item.MenuId);
-                        }
-
             return View(categoriesForMenuId);
+            }
+            else
+            {
+                return RedirectToAction("Index","Menus");
+            }
         }
-
+        
         // GET: MenuCategories/Details/Id
         public async Task<IActionResult> Details(int? id)
         {
@@ -82,9 +86,9 @@ namespace ResAktWebb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,MenuId")] MenuCategory menuCategory)
         {
-            menuCategory.Id = 0;//För att fixa autoincrement
+            menuCategory.Id = 0;//För att fixa autoincrement som blir inte automatiskt blir 0
             await RestHelper.ApiCreate<MenuCategory>(menuCatApi, menuCategory);
-            return RedirectToAction("Index", "Menus" /*,new { id = menuCategory.MenuId }*/);
+            return RedirectToAction("Index", "Menus");
 
         }
 
@@ -105,7 +109,7 @@ namespace ResAktWebb.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,MenuId")] MenuCategory menuCategory)
         {
             await RestHelper.ApiEdit<MenuCategory>(menuCatApi + id, menuCategory);
-            return RedirectToAction("Index", "Menus"/*, new { id = menuCategory.MenuId }*/);
+            return RedirectToAction("Index", "Menus");
         }
 
         // GET: MenuCategories/Delete/Id
@@ -131,9 +135,8 @@ namespace ResAktWebb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var m = await RestHelper.ApiGet<MenuCategory>(menuCatApi, id);
             await RestHelper.ApiDelete<MenuCategory>(menuCatApi, id);
-            return RedirectToAction("Index", "Menus"/*, new {id=m.MenuId}*/);
+            return RedirectToAction("Index", "Menus");
         }
 
         private bool MenuCategoryExists(int id)

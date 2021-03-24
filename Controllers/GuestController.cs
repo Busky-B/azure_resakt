@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RestHelperLib;
 
 
 namespace ResAktWebb.Controllers
@@ -47,10 +48,11 @@ namespace ResAktWebb.Controllers
 		}
 		public async Task<ActionResult> CreateActivityBooking(string name, int num, int aId)
 		{
-			System.Diagnostics.Debug.WriteLine("<-- CreateActivityBooking -->" );
+			System.Diagnostics.Debug.WriteLine("<-- CreateActivityBooking -->");
 			System.Diagnostics.Debug.WriteLine("name: " + name);
 			System.Diagnostics.Debug.WriteLine("num: " + num);
 			System.Diagnostics.Debug.WriteLine("aId: " + aId);
+
 
 
 			var newAB = new ActivityBooking();
@@ -58,7 +60,11 @@ namespace ResAktWebb.Controllers
 			newAB.NumParticipants = num;
 			newAB.ActivityId = aId;
 			var response = "<-- CreateActivityBooking was called -->";
-			
+
+
+			/// Fungerar, MEN måste fixa så att när den får null att det inte crashar.
+			// var s = RestHelper.PrintObjProps<ActivityBooking>(newAB);
+			// System.Diagnostics.Debug.WriteLine($"<-- {s} -->");
 				
 			await RestHelper.ApiCreate<ActivityBooking>("ActivityBookings/", newAB);
 			

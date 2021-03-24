@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ResAktWebb.Data;
 using ResAktWebb.Models;
+using RestHelperLib;
 
 namespace ResAktWebb.Controllers
 {
@@ -47,7 +48,7 @@ namespace ResAktWebb.Controllers
         [HttpPost]
         [Authorize(Roles = "ResAdmin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Open,Closed")] RestaurantInfo restaurantInfo)
+        public async Task<IActionResult> Create([Bind("Id,DayName,Open,Closed")] RestaurantInfo restaurantInfo)
         {
             await RestHelper.ApiCreate<RestaurantInfo>(api, restaurantInfo);
             return RedirectToAction("Index");
@@ -65,7 +66,7 @@ namespace ResAktWebb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Open,Closed")] RestaurantInfo restaurantInfo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DayName,Open,Closed")] RestaurantInfo restaurantInfo)
         {
             await RestHelper.ApiEdit<RestaurantInfo>(api + id, restaurantInfo);
 

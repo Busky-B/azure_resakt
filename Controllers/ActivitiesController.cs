@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using ResAktWebb.Data;
 using ResAktWebb.Models;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
-
+// Egen skapt ClassLibrary för att hantera API-calls, finns under mappen ~/ClassLib
+using RestHelperLib;
 namespace ResAktWebb.Controllers
 {
     //[Authorize]
     public class ActivitiesController : Controller
     {
         private readonly ResAktWebbContext _context;
+        private readonly ILogger<ActivitiesController> _logger;
 
-        public ActivitiesController(ResAktWebbContext context)
+        public ActivitiesController(ResAktWebbContext context, ILogger<ActivitiesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // Connectionstring till api
         string api = "Activities/";
+        
+        // INDEX: /Activities
         public async Task<IActionResult> Index()
         {
           return View(await RestHelper.ApiGet<Activity>(api));
         }
-
 
         // GET: Activities/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -40,7 +38,6 @@ namespace ResAktWebb.Controllers
             var temp = await RestHelper.ApiGet<ActivityBooking>("ActivityBookings");
             foreach (var item in temp)
             {
-
                 System.Diagnostics.Debug.WriteLine($"<-- MATCH for removal --> \nDebugging templist: \nBookingId\n{item.Id} \nActivityID\n{item.ActivityId} \n{item.CustomerName}\n");
 				if (item.ActivityId == id)
 				{
@@ -97,12 +94,8 @@ namespace ResAktWebb.Controllers
             await RestHelper.ApiDelete<Activity>(api, id);
             return RedirectToAction(nameof(Index));
         }
-
-        private bool ActivityExists(int id)
-        {
-            return _context.Activity.Any(e => e.Id == id);
-        }
-
+        
+        // Metod som aldrig implementerades fullt ut, Används ej.
         public async Task<List<ActivityBooking>> GetChildren (int? id)
         {
             var a = await RestHelper.ApiGet<ActivityBooking>("ActivityBookings/");
