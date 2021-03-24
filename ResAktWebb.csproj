@@ -20,7 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\img\" />
+    <Folder Include="ClassLib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RestHelperLib">
+      <HintPath>ClassLib\RestHelperLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
