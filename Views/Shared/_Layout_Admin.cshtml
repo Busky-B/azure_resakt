@@ -13,14 +13,14 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background: rgba(255,127,80,0.6);
-            width: 100%;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style=" background-color: lightgrey; background: rgba(211, 211, 211, 0.8); height: 40%;
+        width: 100%;">
 
             @* Bild som "inte" ska användas *@
             @*<img src="https://cdn4.iconfinder.com/data/icons/summer-v-2/512/ocean_sea_sun_sunny_sunset_vacation-512.png" width="50" height="50" />*@
             <h1 class="rubrik1">Hotell SeaSharp</h1>
 
-            <div class="container">
+            <div class="containeruppe">
                 @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hotel SeaSharp</a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -85,37 +85,40 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Activities" asp-action="Index">Aktiviteter</a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Login</a>
                             </li>
                         }
 
                     </ul>
-               
+
                 </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p class="float-right flex-grow-2" >Välkommen @User.Identity.Name</p>
-                }
+                @*@if (User.Identity.IsAuthenticated)
+                    {
+                        <p class="float-right flex-grow-2">Välkommen @User.Identity.Name</p>
+                    }*@
             </div>
         </nav>
     </header>
-    <div class="bg-img">
+    @*<div class="bg-img">*@
 
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
-
-        <footer class="border-top footer text-muted" style="position: fixed; left: 0; bottom: 0;">
-            <div class="container">
-                &copy; 2021 - ResAktWebb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
-
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
-    @RenderSection("Scripts", required: false)
+
+    <footer class="bottenFooter">
+        <div class="containernere">
+            &copy; 2021 - Hotell SeaSharp - <a asp-area="" asp-controller="Home" asp-action="Index">Till första sidan</a>
+        </div>
+    </footer>
+
+    @*</div>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
