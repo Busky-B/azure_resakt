@@ -44,6 +44,7 @@ namespace ResAktWebb.Controllers
         // GET: ActivityBookings/Create
         public async Task<IActionResult> Create()
         {
+	    // Hämtar en lista på alla aktiviteter som används i vyn
             var a = await RestHelper.ApiGet<Activity>("Activities/");
             ViewData["ActivityId"] = new SelectList(a, "Id", "Description");
             return View();
